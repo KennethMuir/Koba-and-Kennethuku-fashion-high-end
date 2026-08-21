@@ -1,26 +1,3456 @@
-@import "tailwindcss";
+/* =========================================================
+   KOBA — GLOBAL
+   ========================================================= */
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+* {
+  box-sizing: border-box;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html {
+  scroll-behavior: smooth;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html,
+body {
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: #ffffff;
+  color: #111111;
   font-family: Arial, Helvetica, sans-serif;
+  padding-top: 114px;
+}
+
+body,
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  width: 100%;
+}
+
+.koba-site {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: #ffffff;
+}
+
+
+/* =========================================================
+   KOBA HEADER
+   ========================================================= */
+
+.koba-header {
+  position: fixed;
+  top: 38px;
+  left: 0;
+  right: 0;
+
+  z-index: 9999;
+
+  width: 100%;
+  height: 114px;
+
+  background: #ffffff;
+  color: #111111;
+
+  border-bottom: 1px solid #e8e8e8;
+}
+
+
+.koba-announcement {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+  right: 0;
+
+  z-index: 10001;
+
+  width: 100%;
+  min-height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #000000;
+  color: #ffffff;
+
+  padding: 10px 20px;
+
+  font-size: 11px;
+  font-weight: 500;
+
+  letter-spacing: 0.14em;
+  line-height: 1.4;
+
+  text-align: center;
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   HEADER INNER
+   ========================================================= */
+
+.koba-header-inner {
+  position: relative;
+
+  width: 100%;
+  height: 82px;
+
+  margin-top: 32px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 42px;
+}
+
+
+/* =========================================================
+   LEFT HEADER AREA
+   ========================================================= */
+
+.koba-nav-left {
+  position: relative;
+
+  z-index: 3;
+
+  display: flex;
+  align-items: center;
+
+  min-width: 0;
+}
+
+
+/* =========================================================
+   RIGHT HEADER AREA
+   ========================================================= */
+
+.koba-nav-right {
+  position: relative;
+
+  z-index: 3;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  gap: 28px;
+
+  min-width: 0;
+}
+
+
+/* =========================================================
+   DESKTOP NAVIGATION
+   ========================================================= */
+
+.koba-desktop-nav {
+  display: flex;
+  align-items: center;
+
+  gap: 28px;
+
+  white-space: nowrap;
+}
+
+.koba-desktop-nav a {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+
+  height: 50px;
+
+  color: #111111;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  font-size: 10px;
+  font-weight: 600;
+
+  letter-spacing: 0.13em;
+
+  line-height: 1;
+
+  text-transform: uppercase;
+
+  white-space: nowrap;
+
+  transition: opacity 0.2s ease;
+}
+
+.koba-desktop-nav a::after {
+  position: absolute;
+
+  right: 0;
+  bottom: 7px;
+  left: 0;
+
+  width: 100%;
+  height: 1px;
+
+  background: #111111;
+
+  content: "";
+
+  transform: scaleX(0);
+  transform-origin: center;
+
+  transition: transform 0.25s ease;
+}
+
+.koba-desktop-nav a:hover {
+  opacity: 0.55;
+}
+
+.koba-desktop-nav a:hover::after {
+  transform: scaleX(1);
+}
+
+
+/* =========================================================
+   KOBA WORDMARK
+   ========================================================= */
+
+.koba-wordmark {
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #111111 !important;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 35px;
+  font-weight: 400;
+
+  letter-spacing: 0.20em;
+
+  line-height: 1;
+
+  text-align: center;
+
+  white-space: nowrap;
+
+  transform: translate(-50%, -50%);
+
+  transition: opacity 0.2s ease;
+}
+
+.koba-wordmark:hover {
+  opacity: 0.65;
+}
+
+
+/* =========================================================
+   HEADER ICONS
+   ========================================================= */
+
+.koba-header-icons {
+  display: flex;
+  align-items: center;
+
+  gap: 20px;
+}
+
+
+/* =========================================================
+   GENERIC HEADER BUTTON
+   ========================================================= */
+
+.koba-header-icons button,
+.koba-search-button,
+.koba-account-button,
+.koba-cart-button {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  margin: 0;
+  padding: 0;
+
+  border: 0;
+  outline: 0;
+
+  background: transparent;
+  color: #111111;
+
+  cursor: pointer;
+
+  transition: opacity 0.2s ease;
+}
+
+.koba-header-icons button:hover,
+.koba-search-button:hover,
+.koba-account-button:hover,
+.koba-cart-button:hover {
+  opacity: 0.5;
+}
+
+
+/* =========================================================
+   SEARCH BUTTON
+   ========================================================= */
+
+.koba-search-button {
+  width: 22px;
+  height: 22px;
+}
+
+
+/* =========================================================
+   SEARCH ICON
+   ========================================================= */
+
+.koba-search-icon {
+  position: relative;
+
+  display: block;
+
+  width: 14px;
+  height: 14px;
+
+  border: 1.2px solid #111111;
+
+  border-radius: 50%;
+}
+
+.koba-search-icon::after {
+  position: absolute;
+
+  right: -5px;
+  bottom: -3px;
+
+  width: 6px;
+  height: 1px;
+
+  background: #111111;
+
+  content: "";
+
+  transform: rotate(45deg);
+  transform-origin: left center;
+}
+
+
+/* =========================================================
+   ACCOUNT BUTTON
+   ========================================================= */
+
+.koba-account-button {
+  width: 22px;
+  height: 22px;
+}
+
+
+/* =========================================================
+   ACCOUNT ICON
+   ========================================================= */
+
+.koba-account-icon {
+  position: relative;
+
+  display: block;
+
+  width: 17px;
+  height: 17px;
+}
+
+.koba-account-icon::before {
+  position: absolute;
+
+  top: 0;
+  left: 50%;
+
+  width: 6px;
+  height: 6px;
+
+  border: 1px solid #111111;
+
+  border-radius: 50%;
+
+  content: "";
+
+  transform: translateX(-50%);
+}
+
+.koba-account-icon::after {
+  position: absolute;
+
+  right: 1px;
+  bottom: 0;
+  left: 1px;
+
+  height: 8px;
+
+  border: 1px solid #111111;
+
+  border-radius: 9px 9px 4px 4px;
+
+  content: "";
+}
+
+
+/* =========================================================
+   CART BUTTON
+   ========================================================= */
+
+.koba-cart-button {
+  width: 24px;
+  height: 25px;
+}
+
+
+/* =========================================================
+   CART / SHOPPING BAG ICON
+   ========================================================= */
+
+.koba-cart-icon {
+  position: relative;
+
+  display: block;
+
+  width: 19px;
+  height: 20px;
+}
+
+
+/* Handle */
+
+.koba-cart-handle {
+  position: absolute;
+
+  top: 0;
+  left: 6px;
+
+  width: 7px;
+  height: 6px;
+
+  border: 1.2px solid #111111;
+  border-bottom: 0;
+
+  border-radius: 5px 5px 0 0;
+}
+
+
+/* Basket */
+
+.koba-cart-basket {
+  position: absolute;
+
+  top: 5px;
+  left: 2px;
+
+  width: 15px;
+  height: 12px;
+
+  border: 1.2px solid #111111;
+
+  border-radius: 1px 1px 3px 3px;
+}
+
+
+/* Wheels */
+
+.koba-cart-wheel {
+  position: absolute;
+
+  bottom: 0;
+
+  width: 2.5px;
+  height: 2.5px;
+
+  background: #111111;
+
+  border-radius: 50%;
+}
+
+.koba-cart-wheel-left {
+  left: 4px;
+}
+
+.koba-cart-wheel-right {
+  right: 4px;
+}
+
+
+/* =========================================================
+   CART COUNT
+   ========================================================= */
+
+.koba-cart-count {
+  position: absolute;
+
+  top: -6px;
+  right: -8px;
+
+  min-width: 13px;
+  height: 13px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 3px;
+
+  border-radius: 50%;
+
+  background: #111111;
+  color: #ffffff;
+
+  font-size: 7px;
+  font-weight: 600;
+
+  line-height: 1;
+}
+
+
+/* =========================================================
+   FOCUS STATES
+   ========================================================= */
+
+.koba-search-button:focus-visible,
+.koba-account-button:focus-visible,
+.koba-cart-button:focus-visible {
+  outline: 1px solid #111111;
+  outline-offset: 5px;
+}
+
+
+/* =========================================================
+   MOBILE MENU BUTTON
+   ========================================================= */
+
+.koba-menu-button {
+  display: none;
+
+  width: 25px;
+  height: 22px;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-direction: column;
+
+  gap: 5px;
+
+  margin: 0;
+  padding: 0;
+
+  border: 0;
+  outline: 0;
+
+  background: transparent;
+
+  cursor: pointer;
+
+  transition: opacity 0.2s ease;
+}
+
+.koba-menu-button span {
+  display: block;
+
+  width: 21px;
+  height: 1px;
+
+  background: #111111;
+
+  transition:
+    transform 0.25s ease,
+    opacity 0.25s ease;
+}
+
+.koba-menu-button:hover {
+  opacity: 0.55;
+}
+
+
+/* =========================================================
+   MOBILE MENU
+   ========================================================= */
+
+.koba-mobile-menu {
+  position: fixed;
+
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  z-index: 10000;
+
+  display: none;
+
+  flex-direction: column;
+
+  padding: 25px;
+
+  background: #ffffff;
+  color: #111111;
+
+  overflow-y: auto;
+}
+
+.koba-mobile-menu.open {
+  display: flex;
+}
+
+
+/* =========================================================
+   MOBILE MENU HEADER
+   ========================================================= */
+
+.koba-mobile-menu-header {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  min-height: 45px;
+
+  padding-bottom: 25px;
+
+  border-bottom: 1px solid #e5e5e5;
+}
+
+
+/* =========================================================
+   MOBILE LOGO
+   ========================================================= */
+
+.koba-mobile-logo {
+  color: #111111;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 28px;
+  font-weight: 400;
+
+  letter-spacing: 0.18em;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   MOBILE CLOSE BUTTON
+   ========================================================= */
+
+.koba-close-button {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: 0;
+  outline: 0;
+
+  background: transparent;
+  color: #111111;
+
+  font-size: 10px;
+  font-weight: 600;
+
+  letter-spacing: 0.13em;
+
+  text-transform: uppercase;
+
+  cursor: pointer;
+}
+
+
+/* =========================================================
+   MOBILE NAVIGATION
+   ========================================================= */
+
+.koba-mobile-navigation {
+  display: flex;
+
+  flex-direction: column;
+
+  margin-top: 35px;
+}
+
+.koba-mobile-navigation a {
+  display: flex;
+
+  align-items: center;
+
+  min-height: 58px;
+
+  border-bottom: 1px solid #e5e5e5;
+
+  color: #111111;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  letter-spacing: 0.13em;
+
+  text-transform: uppercase;
+
+  transition: opacity 0.2s ease;
+}
+
+.koba-mobile-navigation a:hover {
+  opacity: 0.55;
+}
+
+
+/* =========================================================
+   MOBILE ACTIONS
+   ========================================================= */
+
+.koba-mobile-actions {
+  display: flex;
+
+  flex-direction: column;
+
+  margin-top: 35px;
+
+  border-top: 1px solid #e5e5e5;
+}
+
+.koba-mobile-actions button,
+.koba-mobile-actions a {
+  min-height: 52px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0;
+
+  border: 0;
+  border-bottom: 1px solid #e5e5e5;
+
+  background: transparent;
+  color: #111111;
+
+  font-size: 10px;
+  font-weight: 600;
+
+  letter-spacing: 0.13em;
+
+  text-align: left;
+
+  text-transform: uppercase;
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.koba-hero {
+  position: relative;
+
+  height: calc(100vh - 114px);
+
+  min-height: 650px;
+
+  color: #ffffff;
+
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   HERO IMAGE
+   ========================================================= */
+
+.koba-hero-image {
+  position: absolute;
+
+  inset: 0;
+}
+
+.koba-hero-image img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  filter: saturate(0.75);
+}
+
+
+/* =========================================================
+   HERO OVERLAY
+   ========================================================= */
+
+.koba-hero-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.65),
+      rgba(0, 0, 0, 0.15) 70%
+    ),
+    linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.45),
+      transparent 45%
+    );
+}
+
+
+/* =========================================================
+   HERO CONTENT
+   ========================================================= */
+
+.koba-hero-content {
+  position: absolute;
+
+  top: 50%;
+  left: 9%;
+
+  z-index: 2;
+
+  width: min(650px, 80%);
+
+  transform: translateY(-42%);
+}
+
+
+/* =========================================================
+   OVERLINE
+   ========================================================= */
+
+.koba-overline {
+  margin: 0 0 22px;
+
+  font-size: 10px;
+  font-weight: 700;
+
+  letter-spacing: 0.22em;
+
+  line-height: 1.4;
+
+  text-transform: uppercase;
+}
+
+.koba-overline.dark {
+  color: #777777;
+}
+
+
+/* =========================================================
+   HERO HEADING
+   ========================================================= */
+
+.koba-hero h1 {
+  margin: 0;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: clamp(65px, 8vw, 116px);
+
+  font-weight: 400;
+
+  line-height: 0.87;
+
+  letter-spacing: -0.055em;
+}
+
+.koba-hero h1 em,
+.koba-intro-main h2 em,
+.koba-editorial h2 em,
+.koba-craft h2 em,
+.koba-newsletter h2 em {
+  font-style: italic;
+  font-weight: 400;
+}
+
+
+/* =========================================================
+   HERO COPY
+   ========================================================= */
+
+.koba-hero-copy {
+  max-width: 480px;
+
+  margin: 32px 0;
+
+  color: rgba(255, 255, 255, 0.82);
+
+  font-size: 15px;
+
+  line-height: 1.8;
+}
+
+
+/* =========================================================
+   PRIMARY BUTTON
+   ========================================================= */
+
+.koba-primary-button {
+  min-height: 52px;
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 28px;
+
+  border: 1px solid #ffffff;
+
+  background: #ffffff;
+  color: #111111;
+
+  font-size: 10px;
+  font-weight: 700;
+
+  letter-spacing: 0.15em;
+
+  text-transform: uppercase;
+
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.koba-primary-button:hover {
+  background: transparent;
+  color: #ffffff;
+}
+
+.koba-primary-button.light {
+  border-color: #ffffff;
+
+  background: transparent;
+  color: #ffffff;
+}
+
+.koba-primary-button.light:hover {
+  background: #ffffff;
+  color: #111111;
+}
+
+
+/* =========================================================
+   HERO SCROLL
+   ========================================================= */
+
+.koba-scroll {
+  position: absolute;
+
+  bottom: 34px;
+  left: 9%;
+
+  z-index: 2;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 16px;
+
+  font-size: 9px;
+
+  letter-spacing: 0.16em;
+
+  text-transform: uppercase;
+}
+
+.koba-scroll i {
+  display: block;
+
+  width: 50px;
+  height: 1px;
+
+  background: #ffffff;
+}
+
+
+/* =========================================================
+   INTRODUCTION
+   ========================================================= */
+
+.koba-introduction {
+  display: grid;
+
+  grid-template-columns: 25% 1fr;
+
+  gap: 80px;
+
+  max-width: 1200px;
+
+  margin: auto;
+
+  padding: 150px 40px;
+}
+
+.koba-intro-small {
+  display: flex;
+
+  gap: 30px;
+
+  color: #999999;
+
+  font-size: 9px;
+  font-weight: 700;
+
+  letter-spacing: 0.18em;
+
+  text-transform: uppercase;
+}
+
+.koba-intro-main {
+  max-width: 750px;
+}
+
+
+/* =========================================================
+   LARGE SERIF HEADINGS
+   ========================================================= */
+
+.koba-intro-main h2,
+.koba-editorial h2,
+.koba-craft h2,
+.koba-newsletter h2 {
+  margin: 0 0 35px;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: clamp(54px, 7vw, 94px);
+
+  font-weight: 400;
+
+  line-height: 0.9;
+
+  letter-spacing: -0.055em;
+}
+
+
+/* =========================================================
+   INTRO PARAGRAPH
+   ========================================================= */
+
+.koba-intro-main p {
+  max-width: 570px;
+
+  margin: 0 0 35px;
+
+  color: #666666;
+
+  font-size: 16px;
+
+  line-height: 1.9;
+}
+
+
+/* =========================================================
+   TEXT LINK
+   ========================================================= */
+
+.koba-text-link {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 25px;
+
+  padding-bottom: 8px;
+
+  border-bottom: 1px solid #222222;
+
+  font-size: 10px;
+  font-weight: 700;
+
+  letter-spacing: 0.15em;
+
+  text-transform: uppercase;
+
+  transition: opacity 0.2s ease;
+}
+
+.koba-text-link:hover {
+  opacity: 0.55;
+}
+
+.koba-text-link span {
+  font-size: 17px;
+  font-weight: 400;
+}
+
+
+/* =========================================================
+   COLLECTION
+   ========================================================= */
+
+.koba-collection-section {
+  padding: 100px 40px 150px;
+}
+
+
+/* =========================================================
+   SECTION HEADINGS
+   ========================================================= */
+
+.koba-section-heading,
+.koba-products-heading {
+  display: flex;
+
+  align-items: flex-end;
+  justify-content: space-between;
+
+  max-width: 1400px;
+
+  margin: 0 auto 55px;
+}
+
+.koba-section-heading h2,
+.koba-products-heading h2 {
+  margin: 12px 0 0;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: clamp(42px, 5vw, 68px);
+
+  font-weight: 400;
+
+  line-height: 1;
+
+  letter-spacing: -0.045em;
+}
+
+
+/* =========================================================
+   CATEGORY GRID
+   ========================================================= */
+
+.koba-category-grid {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 22px;
+
+  max-width: 1400px;
+
+  margin: auto;
+}
+
+
+/* =========================================================
+   CATEGORY CARD
+   ========================================================= */
+
+.koba-category {
+  position: relative;
+
+  height: 690px;
+
+  overflow: hidden;
+
+  color: #ffffff;
+}
+
+.koba-category img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transition:
+    transform 0.8s cubic-bezier(0.2, 0.6, 0.2, 1);
+}
+
+.koba-category:hover img {
+  transform: scale(1.04);
+}
+
+.koba-category::after {
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.65),
+      transparent 55%
+    );
+
+  content: "";
+}
+
+
+/* =========================================================
+   CATEGORY CAPTION
+   ========================================================= */
+
+.koba-category-caption {
+  position: absolute;
+
+  right: 40px;
+  bottom: 40px;
+  left: 40px;
+
+  z-index: 2;
+}
+
+.koba-category-caption span {
+  font-size: 9px;
+
+  letter-spacing: 0.18em;
+}
+
+.koba-category-caption h3 {
+  margin: 8px 0;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 54px;
+
+  font-weight: 400;
+
+  line-height: 1;
+}
+
+.koba-category-caption p {
+  margin: 0;
+
+  font-size: 10px;
+
+  letter-spacing: 0.12em;
+
+  text-transform: uppercase;
+}
+
+
+/* =========================================================
+   PRODUCTS
+   ========================================================= */
+
+.koba-products {
+  padding: 120px 40px;
+
+  background: #ffffff;
+}
+
+
+/* =========================================================
+   PRODUCT GRID
+   ========================================================= */
+
+.koba-product-grid {
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 18px;
+
+  max-width: 1400px;
+
+  margin: auto;
+}
+
+
+/* =========================================================
+   PRODUCT IMAGE
+   ========================================================= */
+
+.koba-product-image {
+  position: relative;
+
+  aspect-ratio: 0.82;
+
+  overflow: hidden;
+
+  background: #f1f0ed;
+}
+
+.koba-product-image img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  mix-blend-mode: multiply;
+
+  transition: transform 0.55s ease;
+}
+
+.koba-product:hover .koba-product-image img {
+  transform: scale(1.025);
+}
+
+
+/* =========================================================
+   PRODUCT BADGE
+   ========================================================= */
+
+.koba-product-badge {
+  position: absolute;
+
+  top: 16px;
+  left: 16px;
+
+  z-index: 2;
+
+  padding: 7px 10px;
+
+  background: #ffffff;
+
+  font-size: 8px;
+  font-weight: 700;
+
+  letter-spacing: 0.14em;
+
+  text-transform: uppercase;
+}
+
+
+/* =========================================================
+   PRODUCT FAVOURITE
+   ========================================================= */
+
+.koba-favourite {
+  position: absolute;
+
+  top: 13px;
+  right: 13px;
+
+  z-index: 2;
+
+  width: 35px;
+  height: 35px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: 0;
+
+  background: rgba(255, 255, 255, 0.85);
+
+  color: #111111;
+
+  font-size: 19px;
+
+  cursor: pointer;
+
+  transition: opacity 0.2s ease;
+}
+
+.koba-favourite:hover {
+  opacity: 0.65;
+}
+
+
+/* =========================================================
+   PRODUCT INFO
+   ========================================================= */
+
+.koba-product-info {
+  display: flex;
+
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 15px;
+
+  padding: 17px 2px;
+}
+
+.koba-product-info h3 {
+  margin: 0 0 7px;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 17px;
+
+  font-weight: 400;
+
+  line-height: 1.2;
+}
+
+.koba-product-info p {
+  margin: 0;
+
+  color: #888888;
+
+  font-size: 9px;
+
+  letter-spacing: 0.1em;
+
+  text-transform: uppercase;
+}
+
+.koba-product-info strong {
+  white-space: nowrap;
+
+  font-size: 10px;
+
+  font-weight: 500;
+}
+
+
+/* =========================================================
+   EDITORIAL
+   ========================================================= */
+
+.koba-editorial {
+  position: relative;
+
+  min-height: 780px;
+
+  color: #ffffff;
+
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   EDITORIAL IMAGE
+   ========================================================= */
+
+.koba-editorial-image {
+  position: absolute;
+
+  inset: 0;
+}
+
+.koba-editorial-image img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  filter: saturate(0.7);
+}
+
+
+/* =========================================================
+   EDITORIAL OVERLAY
+   ========================================================= */
+
+.koba-editorial::after {
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.72),
+      rgba(0, 0, 0, 0.1)
+    );
+
+  content: "";
+}
+
+
+/* =========================================================
+   EDITORIAL CONTENT
+   ========================================================= */
+
+.koba-editorial-content {
+  position: relative;
+
+  z-index: 2;
+
+  display: flex;
+
+  width: min(600px, 80%);
+
+  min-height: 780px;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  margin-left: 9%;
+}
+
+.koba-editorial-content h2 {
+  margin-bottom: 35px;
+}
+
+.koba-editorial-content p:not(.koba-overline) {
+  max-width: 450px;
+
+  margin: 0 0 35px;
+
+  color: rgba(255, 255, 255, 0.75);
+
+  line-height: 1.8;
+}
+
+
+/* =========================================================
+   CRAFT
+   ========================================================= */
+
+.koba-craft {
+  display: grid;
+
+  grid-template-columns: 25% 1fr;
+
+  gap: 70px;
+
+  max-width: 1200px;
+
+  margin: auto;
+
+  padding: 150px 40px;
+}
+
+.koba-craft-number {
+  color: #999999;
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.18em;
+}
+
+.koba-craft-content {
+  max-width: 850px;
+}
+
+.koba-craft-content > p:not(.koba-overline) {
+  max-width: 550px;
+
+  margin: 0;
+
+  color: #666666;
+
+  line-height: 1.8;
+}
+
+
+/* =========================================================
+   VALUES
+   ========================================================= */
+
+.koba-values {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 40px;
+
+  margin-top: 80px;
+
+  padding-top: 30px;
+
+  border-top: 1px solid #dddddd;
+}
+
+.koba-values span {
+  display: block;
+
+  margin-bottom: 25px;
+
+  color: #999999;
+
+  font-size: 9px;
+
+  letter-spacing: 0.15em;
+}
+
+.koba-values strong {
+  display: block;
+
+  margin-bottom: 12px;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 25px;
+
+  font-weight: 400;
+}
+
+.koba-values p {
+  margin: 0;
+
+  color: #777777;
+
+  font-size: 12px;
+
+  line-height: 1.7;
+}
+
+
+/* =========================================================
+   NEWSLETTER
+   ========================================================= */
+
+.koba-newsletter {
+  padding: 140px 30px;
+
+  background: #e9e7e1;
+
+  text-align: center;
+}
+
+.koba-newsletter h2 {
+  margin-bottom: 25px;
+}
+
+.koba-newsletter > p:not(.koba-overline) {
+  max-width: 480px;
+
+  margin: 0 auto 40px;
+
+  color: #666666;
+
+  line-height: 1.7;
+}
+
+
+/* =========================================================
+   NEWSLETTER FORM
+   ========================================================= */
+
+.koba-newsletter form {
+  display: flex;
+
+  max-width: 480px;
+
+  margin: auto;
+
+  border-bottom: 1px solid #222222;
+}
+
+.koba-newsletter input {
+  flex: 1;
+
+  min-width: 0;
+
+  padding: 15px 0;
+
+  border: 0;
+  outline: none;
+
+  background: transparent;
+
+  color: #111111;
+
+  font-size: 12px;
+}
+
+.koba-newsletter input::placeholder {
+  color: #888888;
+}
+
+.koba-newsletter button {
+  padding: 15px 0 15px 20px;
+
+  border: 0;
+
+  background: transparent;
+
+  color: #111111;
+
+  font-size: 9px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.15em;
+
+  text-transform: uppercase;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.koba-footer {
+  padding: 85px 40px 30px;
+
+  background: #111111;
+
+  color: #ffffff;
+}
+
+
+/* =========================================================
+   FOOTER TOP
+   ========================================================= */
+
+.koba-footer-top {
+  display: grid;
+
+  grid-template-columns: 2fr repeat(3, 1fr);
+
+  gap: 50px;
+
+  max-width: 1400px;
+
+  margin: auto;
+
+  padding-bottom: 80px;
+}
+
+
+/* =========================================================
+   FOOTER BRAND
+   ========================================================= */
+
+.koba-footer-brand p {
+  max-width: 320px;
+
+  margin: 25px 0 0;
+
+  color: #777777;
+
+  font-size: 12px;
+
+  line-height: 1.7;
+}
+
+.footer-logo {
+  display: inline-block;
+}
+
+
+/* =========================================================
+   FOOTER HEADINGS
+   ========================================================= */
+
+.koba-footer h4 {
+  margin: 0 0 22px;
+
+  color: #777777;
+
+  font-size: 9px;
+
+  letter-spacing: 0.18em;
+
+  text-transform: uppercase;
+}
+
+
+/* =========================================================
+   FOOTER LINKS
+   ========================================================= */
+
+.koba-footer-top > div:not(.koba-footer-brand) a {
+  display: block;
+
+  margin-bottom: 14px;
+
+  color: #bbbbbb;
+
+  font-size: 11px;
+
+  transition: color 0.2s ease;
+}
+
+.koba-footer-top > div:not(.koba-footer-brand) a:hover {
+  color: #ffffff;
+}
+
+
+/* =========================================================
+   FOOTER BOTTOM
+   ========================================================= */
+
+.koba-footer-bottom {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  max-width: 1400px;
+
+  margin: auto;
+
+  padding-top: 25px;
+
+  border-top: 1px solid #292929;
+
+  color: #666666;
+
+  font-size: 9px;
+
+  letter-spacing: 0.08em;
+}
+
+.koba-footer-bottom div {
+  display: flex;
+
+  gap: 25px;
+}
+
+
+/* =========================================================
+   CART OVERLAY
+   ========================================================= */
+
+.koba-cart-overlay {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 9998;
+
+  background: rgba(0, 0, 0, 0.28);
+}
+
+
+/* =========================================================
+   CART DRAWER
+   ========================================================= */
+
+.koba-cart-drawer {
+  position: fixed;
+
+  top: 0;
+  right: 0;
+  bottom: 0;
+
+  z-index: 9999;
+
+  width: min(460px, 100vw);
+
+  display: flex;
+
+  flex-direction: column;
+
+  background: #ffffff;
+
+  box-shadow:
+    -10px 0 40px rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================================================
+   CART HEADER
+   ========================================================= */
+
+.koba-cart-header {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  height: 88px;
+
+  flex-shrink: 0;
+
+  padding: 0 30px;
+
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.koba-cart-title {
+  margin: 0;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 28px;
+
+  font-weight: 400;
+
+  letter-spacing: -0.03em;
+}
+
+
+/* =========================================================
+   CART CLOSE
+   ========================================================= */
+
+.koba-cart-close {
+  width: 35px;
+  height: 35px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: 0;
+
+  background: transparent;
+
+  color: #111111;
+
+  font-size: 22px;
+
+  font-weight: 300;
+
+  cursor: pointer;
+
+  transition: opacity 0.2s ease;
+}
+
+.koba-cart-close:hover {
+  opacity: 0.5;
+}
+
+
+/* =========================================================
+   CART CONTENT
+   ========================================================= */
+
+.koba-cart-content {
+  flex: 1;
+
+  overflow-y: auto;
+
+  padding: 30px;
+}
+
+
+/* =========================================================
+   EMPTY CART
+   ========================================================= */
+
+.koba-cart-empty {
+  min-height: 300px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+}
+
+.koba-cart-empty p {
+  margin: 0 0 25px;
+
+  color: #666666;
+
+  font-size: 12px;
+
+  line-height: 1.7;
+}
+
+
+/* =========================================================
+   CART ITEM
+   ========================================================= */
+
+.koba-cart-item {
+  display: grid;
+
+  grid-template-columns: 90px 1fr auto;
+
+  gap: 18px;
+
+  padding: 20px 0;
+
+  border-bottom: 1px solid #e5e5e5;
+}
+
+
+/* =========================================================
+   CART ITEM IMAGE
+   ========================================================= */
+
+.koba-cart-item-image {
+  width: 90px;
+  height: 110px;
+
+  overflow: hidden;
+
+  background: #f3f2ef;
+}
+
+.koba-cart-item-image img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+
+/* =========================================================
+   CART ITEM INFO
+   ========================================================= */
+
+.koba-cart-item-info h3 {
+  margin: 0 0 7px;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 16px;
+
+  font-weight: 400;
+}
+
+.koba-cart-item-info p {
+  margin: 0 0 12px;
+
+  color: #888888;
+
+  font-size: 9px;
+
+  letter-spacing: 0.1em;
+
+  text-transform: uppercase;
+}
+
+.koba-cart-item-price {
+  font-size: 11px;
+
+  font-weight: 500;
+}
+
+
+/* =========================================================
+   CART REMOVE
+   ========================================================= */
+
+.koba-cart-remove {
+  align-self: start;
+
+  padding: 0;
+
+  border: 0;
+
+  background: transparent;
+
+  color: #777777;
+
+  font-size: 9px;
+
+  font-weight: 600;
+
+  letter-spacing: 0.1em;
+
+  text-transform: uppercase;
+
+  transition: color 0.2s ease;
+}
+
+.koba-cart-remove:hover {
+  color: #111111;
+}
+
+
+/* =========================================================
+   CART FOOTER
+   ========================================================= */
+
+.koba-cart-footer {
+  flex-shrink: 0;
+
+  padding: 25px 30px 30px;
+
+  border-top: 1px solid #e5e5e5;
+
+  background: #ffffff;
+}
+
+
+/* =========================================================
+   CART TOTAL
+   ========================================================= */
+
+.koba-cart-total {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 20px;
+
+  font-size: 11px;
+
+  font-weight: 600;
+
+  letter-spacing: 0.1em;
+
+  text-transform: uppercase;
+}
+
+
+/* =========================================================
+   CART CHECKOUT
+   ========================================================= */
+
+.koba-cart-checkout {
+  width: 100%;
+
+  min-height: 52px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #111111;
+
+  background: #111111;
+  color: #ffffff;
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.15em;
+
+  text-transform: uppercase;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.koba-cart-checkout:hover {
+  background: #ffffff;
+  color: #111111;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1200px) {
+
+  .koba-header-inner {
+    padding-left: 28px;
+    padding-right: 28px;
+  }
+
+  .koba-desktop-nav {
+    gap: 20px;
+  }
+
+  .koba-nav-right {
+    gap: 20px;
+  }
+
+  .koba-desktop-nav a {
+    font-size: 9px;
+  }
+
+  .koba-product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .koba-introduction,
+  .koba-craft {
+    grid-template-columns: 1fr;
+
+    gap: 40px;
+  }
+
+  .koba-category {
+    height: 550px;
+  }
+
+  .koba-footer-top {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  body {
+    padding-top: 102px;
+  }
+
+  .koba-header {
+    height: 102px;
+  }
+
+  .koba-announcement {
+    height: 30px;
+
+    font-size: 8px;
+
+    letter-spacing: 0.13em;
+  }
+
+  .koba-header-inner {
+    height: 72px;
+
+    margin-top: 30px;
+
+    padding: 0 25px;
+  }
+
+  /* Mobile menu button */
+
+  .koba-menu-button {
+    display: flex;
+  }
+
+  /* Hide desktop navigation */
+
+  .koba-desktop-nav {
+    display: none;
+  }
+
+  /* Logo */
+
+  .koba-wordmark {
+    font-size: 29px;
+
+    letter-spacing: 0.17em;
+  }
+
+  /* Header spacing */
+
+  .koba-nav-right {
+    gap: 14px;
+  }
+
+  /* Hide search and account */
+
+  .koba-search-button,
+  .koba-account-button {
+    display: none;
+  }
+
+  /* Hero */
+
+  .koba-hero {
+    height: 85vh;
+
+    min-height: 620px;
+  }
+
+  .koba-hero-content {
+    left: 7%;
+
+    width: 86%;
+  }
+
+  .koba-hero h1 {
+    font-size: clamp(58px, 17vw, 88px);
+  }
+
+  .koba-hero-copy {
+    font-size: 14px;
+  }
+
+  /* Introduction */
+
+  .koba-introduction {
+    padding: 90px 25px;
+  }
+
+  .koba-intro-main h2,
+  .koba-editorial h2,
+  .koba-craft h2,
+  .koba-newsletter h2 {
+    font-size: 58px;
+  }
+
+  /* Collection / products */
+
+  .koba-collection-section,
+  .koba-products {
+    padding: 80px 20px;
+  }
+
+  .koba-section-heading,
+  .koba-products-heading {
+    display: block;
+
+    margin-bottom: 35px;
+  }
+
+  .koba-section-heading .koba-text-link,
+  .koba-products-heading .koba-text-link {
+    margin-top: 25px;
+  }
+
+  .koba-category-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .koba-category {
+    height: 530px;
+  }
+
+  /* Products */
+
+  .koba-product-grid {
+    grid-template-columns: 1fr 1fr;
+
+    gap: 12px;
+  }
+
+  .koba-product-info {
+    display: block;
+  }
+
+  .koba-product-info strong {
+    display: block;
+
+    margin-top: 8px;
+  }
+
+  /* Editorial */
+
+  .koba-editorial {
+    min-height: 650px;
+  }
+
+  .koba-editorial-content {
+    width: 86%;
+
+    min-height: 650px;
+
+    margin-left: 7%;
+  }
+
+  /* Craft */
+
+  .koba-craft {
+    padding: 90px 25px;
+  }
+
+  .koba-values {
+    grid-template-columns: 1fr;
+
+    gap: 30px;
+  }
+
+  /* Newsletter */
+
+  .koba-newsletter {
+    padding: 90px 25px;
+  }
+
+  /* Footer */
+
+  .koba-footer {
+    padding: 65px 25px 25px;
+  }
+
+  .koba-footer-top {
+    grid-template-columns: 1fr 1fr;
+
+    gap: 40px 20px;
+  }
+
+  .koba-footer-brand {
+    grid-column: 1 / -1;
+  }
+
+  .koba-footer-bottom {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 18px;
+  }
+
+  /* Hide scroll indicator */
+
+  .koba-scroll {
+    display: none;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+  body {
+    padding-top: 102px;
+  }
+
+  .koba-header-inner {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .koba-wordmark {
+    font-size: 25px;
+
+    letter-spacing: 0.13em;
+  }
+
+  .koba-menu-button {
+    width: 22px;
+  }
+
+  .koba-menu-button span {
+    width: 19px;
+  }
+
+  .koba-hero {
+    min-height: 600px;
+  }
+
+  .koba-hero-content {
+    left: 7%;
+
+    width: 86%;
+  }
+
+  .koba-hero h1 {
+    font-size: clamp(54px, 16vw, 80px);
+  }
+
+  .koba-category {
+    height: 500px;
+  }
+
+  .koba-category-caption {
+    right: 25px;
+    bottom: 25px;
+    left: 25px;
+  }
+
+  .koba-category-caption h3 {
+    font-size: 42px;
+  }
+
+  .koba-product-grid {
+    gap: 10px;
+  }
+
+  .koba-product-info h3 {
+    font-size: 15px;
+  }
+
+  .koba-footer-top {
+    grid-template-columns: 1fr 1fr;
+
+    gap: 30px 15px;
+  }
+
+  .koba-cart-header {
+    height: 72px;
+
+    padding: 0 20px;
+  }
+
+  .koba-cart-title {
+    font-size: 24px;
+  }
+
+  .koba-cart-content {
+    padding: 20px;
+  }
+
+  .koba-cart-footer {
+    padding: 20px;
+  }
+
+  .koba-cart-item {
+    grid-template-columns: 75px 1fr auto;
+
+    gap: 14px;
+  }
+
+  .koba-cart-item-image {
+    width: 75px;
+    height: 95px;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL SCREENS
+   ========================================================= */
+
+@media (max-width: 360px) {
+
+  .koba-header-inner {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .koba-wordmark {
+    font-size: 22px;
+
+    letter-spacing: 0.10em;
+  }
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+/* =========================================================
+   KOBA — HEADER ICONS
+   ========================================================= */
+
+.koba-header-right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 22px;
+}
+
+.koba-icon-button {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.koba-icon-button svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.koba-icon-button:hover svg {
+  opacity: 0.65;
+  transform: scale(1.05);
+}
+
+.koba-cart-icon-button {
+  position: relative;
+}
+
+.koba-cart-count {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  min-width: 15px;
+  height: 15px;
+  padding: 0 3px;
+  border-radius: 50%;
+  background: currentColor;
+  color: var(--koba-header-bg, #000);
+  font-size: 8px;
+  line-height: 15px;
+  text-align: center;
+}
+
+
+/* =========================================================
+   KOBA — WISHLIST PAGE
+   ========================================================= */
+
+.koba-wishlist-page {
+  min-height: 100vh;
+  background: #ffffff;
+  color: #111111;
+}
+
+
+/* =========================================================
+   WISHLIST HEADER
+   ========================================================= */
+
+.koba-wishlist-header {
+  height: 88px;
+  padding: 0 5vw;
+  border-bottom: 1px solid #e8e8e8;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.koba-wishlist-logo {
+  color: #111111;
+  text-decoration: none;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+}
+
+.koba-wishlist-back {
+  color: #111111;
+  text-decoration: none;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-bottom: 1px solid #111111;
+  padding-bottom: 5px;
+}
+
+
+/* =========================================================
+   WISHLIST EMPTY STATE
+   ========================================================= */
+
+.koba-wishlist-content {
+  min-height: 560px;
+  padding: 110px 20px 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.koba-wishlist-icon {
+  width: 58px;
+  height: 58px;
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.koba-wishlist-icon svg {
+  width: 45px;
+  height: 45px;
+  fill: none;
+  stroke: #111111;
+  stroke-width: 1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.koba-wishlist-overline {
+  margin: 0 0 18px;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #777777;
+}
+
+.koba-wishlist-content h1 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(36px, 5vw, 62px);
+  font-weight: 400;
+  letter-spacing: -0.025em;
+}
+
+.koba-wishlist-description {
+  margin: 22px 0 0;
+  max-width: 450px;
+  color: #666666;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.koba-wishlist-inspiration {
+  margin-top: 48px;
+}
+
+.koba-wishlist-inspiration h2 {
+  margin: 0 0 22px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.koba-wishlist-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 220px;
+  min-height: 50px;
+  padding: 0 25px;
+  background: #111111;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  transition: background 0.25s ease;
+}
+
+.koba-wishlist-button:hover {
+  background: #333333;
+}
+
+.koba-wishlist-signin {
+  margin-top: 26px;
+  color: #111111;
+  text-decoration: none;
+  font-size: 11px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  border-bottom: 1px solid #111111;
+  padding-bottom: 5px;
+}
+
+
+/* =========================================================
+   RECENTLY VIEWED
+   ========================================================= */
+
+.koba-recently-viewed {
+  padding: 80px 5vw 100px;
+  border-top: 1px solid #e8e8e8;
+}
+
+.koba-recently-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.koba-recently-heading span {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.koba-recently-line {
+  width: 100%;
+  height: 1px;
+  margin-top: 20px;
+  background: #dddddd;
+}
+
+.koba-recently-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 22px;
+  margin-top: 35px;
+}
+
+.koba-recently-product {
+  color: #111111;
+  text-decoration: none;
+}
+
+.koba-recently-image {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: #f3f3f3;
+}
+
+.koba-recently-image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.koba-recently-product:hover .koba-recently-image img {
+  transform: scale(1.04);
+}
+
+.koba-recently-info {
+  padding-top: 17px;
+}
+
+.koba-recently-info h3 {
+  margin: 0 0 6px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.koba-recently-info p {
+  margin: 0 0 9px;
+  color: #777777;
+  font-size: 11px;
+}
+
+.koba-recently-info strong {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+
+/* =========================================================
+   WISHLIST FOOTER
+   ========================================================= */
+
+.koba-wishlist-footer {
+  padding: 28px 5vw;
+  border-top: 1px solid #e8e8e8;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #777777;
+  font-size: 10px;
+}
+
+.koba-wishlist-footer div {
+  display: flex;
+  gap: 25px;
+}
+
+.koba-wishlist-footer a {
+  color: #777777;
+  text-decoration: none;
+}
+
+.koba-wishlist-footer a:hover {
+  color: #111111;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  .koba-header-right {
+    gap: 16px;
+  }
+
+  .koba-desktop-nav.koba-nav-right {
+    display: none;
+  }
+
+  .koba-recently-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+}
+
+
+@media (max-width: 600px) {
+
+  .koba-header-right {
+    gap: 12px;
+  }
+
+  .koba-icon-button {
+    width: 22px;
+    height: 22px;
+  }
+
+  .koba-icon-button svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .koba-wishlist-header {
+    height: 72px;
+    padding: 0 20px;
+  }
+
+  .koba-wishlist-logo {
+    font-size: 20px;
+  }
+
+  .koba-wishlist-back {
+    font-size: 9px;
+  }
+
+  .koba-wishlist-content {
+    min-height: 500px;
+    padding: 80px 20px;
+  }
+
+  .koba-wishlist-content h1 {
+    font-size: 38px;
+  }
+
+  .koba-wishlist-description {
+    font-size: 13px;
+  }
+
+  .koba-recently-viewed {
+    padding: 60px 20px 70px;
+  }
+
+  .koba-recently-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .koba-wishlist-footer {
+    padding: 25px 20px;
+    flex-direction: column;
+    gap: 18px;
+    text-align: center;
+  }
+
+}
+/* =========================================================
+   KOBA — CHAT WITH US
+   ========================================================= */
+
+.koba-chat {
+  position: fixed;
+  right: 28px;
+  bottom: 28px;
+  z-index: 9999;
+  font-family: inherit;
+}
+
+/* =========================================================
+   CHAT BUBBLE
+   ========================================================= */
+
+.koba-chat-bubble {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+
+  height: 52px;
+  padding: 0 21px;
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+
+  background: #111;
+  color: #fff;
+
+  cursor: pointer;
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.22);
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.koba-chat-bubble:hover {
+  transform: translateY(-3px);
+  background: #000;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28);
+}
+
+.koba-chat-bubble.active {
+  background: #000;
+}
+
+.koba-chat-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 20px;
+  height: 20px;
+
+  font-size: 20px;
+  line-height: 1;
+}
+
+.koba-chat-label {
+  white-space: nowrap;
+}
+
+/* =========================================================
+   CHAT WINDOW
+   ========================================================= */
+
+.koba-chat-window {
+  position: absolute;
+  right: 0;
+  bottom: 66px;
+
+  width: 360px;
+  max-width: calc(100vw - 40px);
+
+  background: #fff;
+  color: #111;
+
+  border: 1px solid #e7e7e7;
+
+  box-shadow:
+    0 25px 70px rgba(0, 0, 0, 0.18);
+
+  overflow: hidden;
+}
+
+/* =========================================================
+   CHAT HEADER
+   ========================================================= */
+
+.koba-chat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 20px 22px;
+
+  background: #111;
+  color: #fff;
+}
+
+.koba-chat-header > div:first-child {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.koba-chat-header strong {
+  display: block;
+
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+}
+
+.koba-chat-header small {
+  display: block;
+
+  margin-top: 3px;
+
+  color: rgba(255, 255, 255, 0.6);
+
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.koba-chat-status {
+  width: 8px;
+  height: 8px;
+
+  border-radius: 50%;
+
+  background: #fff;
+}
+
+.koba-chat-close {
+  width: 28px;
+  height: 28px;
+
+  border: 0;
+  background: transparent;
+  color: #fff;
+
+  font-size: 25px;
+  font-weight: 300;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* =========================================================
+   CHAT BODY
+   ========================================================= */
+
+.koba-chat-body {
+  padding: 22px;
+}
+
+.koba-chat-message {
+  margin-bottom: 22px;
+}
+
+.koba-chat-message p {
+  margin: 0 0 6px;
+
+  color: #333;
+
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+/* =========================================================
+   CHAT OPTIONS
+   ========================================================= */
+
+.koba-chat-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.koba-chat-options button {
+  width: 100%;
+
+  padding: 13px 14px;
+
+  border: 1px solid #dedede;
+  background: #fff;
+
+  color: #222;
+
+  text-align: left;
+
+  font-family: inherit;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+
+  cursor: pointer;
+
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.koba-chat-options button:hover {
+  background: #f6f6f6;
+  border-color: #111;
+}
+
+/* =========================================================
+   CHAT INPUT
+   ========================================================= */
+
+.koba-chat-input {
+  display: flex;
+
+  border-top: 1px solid #e8e8e8;
+}
+
+.koba-chat-input input {
+  flex: 1;
+
+  min-width: 0;
+
+  padding: 16px;
+
+  border: 0;
+  outline: none;
+
+  background: #fff;
+
+  color: #111;
+
+  font-family: inherit;
+  font-size: 12px;
+}
+
+.koba-chat-input input::placeholder {
+  color: #999;
+}
+
+.koba-chat-input button {
+  width: 54px;
+
+  border: 0;
+  border-left: 1px solid #e8e8e8;
+
+  background: #fff;
+  color: #111;
+
+  font-size: 18px;
+
+  cursor: pointer;
+
+  transition:
+    background 0.25s ease,
+    color 0.25s ease;
+}
+
+.koba-chat-input button:hover {
+  background: #111;
+  color: #fff;
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+  .koba-chat {
+    right: 16px;
+    bottom: 16px;
+  }
+
+  .koba-chat-bubble {
+    height: 48px;
+    padding: 0 17px;
+
+    font-size: 10px;
+  }
+
+  .koba-chat-window {
+    right: 0;
+    bottom: 60px;
+
+    width: calc(100vw - 32px);
+    max-width: none;
+  }
+
+}
+/* =========================================================
+   KOBA — CHAT WITH US
+   ========================================================= */
+
+.koba-chat-widget {
+  position: fixed;
+  right: 28px;
+  bottom: 28px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.koba-chat-bubble {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: none;
+  background: #111;
+  color: #fff;
+  padding: 15px 22px;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.koba-chat-bubble:hover {
+  transform: translateY(-3px);
+  background: #000;
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.24);
+}
+
+.koba-chat-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  line-height: 1;
+}
+
+.koba-chat-label {
+  white-space: nowrap;
+}
+
+.koba-chat-panel {
+  width: 350px;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid #e7e7e7;
+  box-shadow: 0 18px 55px rgba(0, 0, 0, 0.18);
+  animation: kobaChatOpen 0.25s ease;
+}
+
+@keyframes kobaChatOpen {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.koba-chat-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  background: #111;
+  color: #fff;
+}
+
+.koba-chat-panel-header > div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.koba-chat-panel-header strong {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+.koba-chat-panel-header span {
+  font-size: 11px;
+  opacity: 0.7;
+}
+
+.koba-chat-panel-header button {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: #fff;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.koba-chat-panel-content {
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.koba-chat-message {
+  padding: 15px;
+  margin-bottom: 7px;
+  background: #f5f5f5;
+  color: #222;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.koba-chat-option {
+  width: 100%;
+  padding: 13px 15px;
+  border: 1px solid #ddd;
+  background: #fff;
+  color: #222;
+  text-align: left;
+  font-family: inherit;
+  font-size: 12px;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.koba-chat-option:hover {
+  background: #f7f7f7;
+  border-color: #aaa;
+}
+
+.koba-chat-panel-footer {
+  padding: 13px 20px;
+  border-top: 1px solid #eee;
+  color: #888;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+
+/* =========================================================
+   MOBILE CHAT
+   ========================================================= */
+
+@media (max-width: 600px) {
+  .koba-chat-widget {
+    right: 16px;
+    bottom: 18px;
+  }
+
+  .koba-chat-bubble {
+    padding: 14px 18px;
+  }
+
+  .koba-chat-panel {
+    width: calc(100vw - 32px);
+    max-width: 350px;
+  }
+
+  .koba-chat-label {
+    font-size: 12px;
+  }
 }
